@@ -161,11 +161,25 @@
                         </div>
                     </div>
                     <!-- Suit Designs -->
+                    <?php
+                    $business_id = $_SESSION['business_id'];
+                    $types = ['suit', 'shirt', 'kurta', 'coat', 'pant', 'shalwar', 'others'];
+                    $typeList = "'" . implode("','", $types) . "'";
+
+                    $query = $this->db->query("
+                    SELECT COUNT(DISTINCT type) as totalCount
+                    FROM measurements
+                    WHERE business_id = $business_id
+                    AND type IN ($typeList)
+                    ");
+                    $result = $query->row();
+                    $totalDesignTypes = $result->totalCount ?? 0;
+                    ?>
                     <div class="col-md-3 col-sm-6">
                         <div class="card shadow-sm h-100">
                             <div class="card-body py-2 text-center">
                                 <i class="ti ti-shirt text-info fs-5 mb-1"></i>
-                                <h6 class="mb-0 fw-semibold">500</h6>
+                                <h6 class="mb-0 fw-semibold"><?php echo $totalDesignTypes; ?></h6>
                                 <small class="text-muted d-block">Suit Designs</small>
                             </div>
                         </div>
@@ -275,7 +289,7 @@
                 WHERE p.business_id = $business_id 
                 AND p.is_deleted = 0
                 ORDER BY p.id DESC
-                LIMIT 8
+                LIMIT 5
                 ");
                 $payments = $query->result();
                 ?>
