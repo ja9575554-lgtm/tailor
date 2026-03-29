@@ -362,7 +362,7 @@ body {
                         aria-expanded="false">
 
                         <?php
-                        $first_name = $this->session->userdata('first_name') ?? '';
+                        $first_name = $this->session->userdata('name') ?? '';
                         $last_name  = $this->session->userdata('last_name') ?? '';
                         $company    = $this->session->userdata('company') ?? '';
                         $logo       = $this->session->userdata('logo') ?? '';

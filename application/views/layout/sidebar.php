@@ -12,6 +12,7 @@
       <a href="<?php echo base_url('Home') ?>" class="b-brand text-primary d-flex align-items-center">
     <?php 
         $company = $this->session->userdata('company') ?? ''; 
+        $name = $this->session->userdata('name') ?? ''; 
         $logo = $this->session->userdata('logo') ?? '';
         // Set logo path: if user uploaded logo use that, otherwise fallback
         $logo_path = !empty($logo) ? base_url('assets/images/logo/'.$logo) : base_url('assets/images/logo/asaanbiz.png');
@@ -21,7 +22,7 @@
          width="70" height="70" 
          class="user-avtar rounded-circle"
           style="width: 40px; height: 40px; object-fit: cover;">
-    <h5 class="mb-0 me-2 mt-3"><?= $company ?></h5>
+    <h6 class="mb-0 me-2 mt-3"><?= $name ?></h6>
 </a>
     </div>
 
